@@ -5,7 +5,7 @@ Feedstock license: [BSD-3-Clause](LICENSE)
 
 Home: [<home_url>](https://github.com/neka-nat/streamlit-mermaid/tree/main)
 
-Package license: NO LICENSE!
+Package license: [<license>](https://raw.githubusercontent.com/neka-nat/streamlit-mermaid/refs/heads/main/LICENSE)
 
 Summary: Streamlit Component, for Mermaid.
 
