@@ -1,45 +1,51 @@
-{% set name = "<PLEASE ADD PKG NAME>" %}
-{% set version = "<PLEASE ADD PKG VERSION>" %}
+{% set name = "streamlit-mermaid" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: <sha256>
+  - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/streamlit-mermaid-{{ version }}.tar.gz
+    sha256: a7883f63be991a378b2c327efae9a03ae49e830481659ae1a955bf68597f9c48
+  # License was not included in tarball, pulling from github for now
+  # Remove this when upstream includes it in pypi release
+  - url: https://raw.githubusercontent.com/neka-nat/streamlit-mermaid/refs/heads/main/LICENSE
+    sha256: f11403a5951d5e69fc315374ca67147a48a7c9c36dbfe6512f59a78394473497
 
 build:
-  number: 0
+  skip: True  # [py<310 or s390x]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [py<38]
+  number: 0
 
 requirements:
   host:
     - python
+    - poetry-core
     - pip
   run:
     - python
+    - streamlit >=1.24.1
 
 test:
   imports:
-    - {{ name.replace('-', '.') }}
-  requires:
-    - pip
+    - streamlit_mermaid
   commands:
     - pip check
+  requires:
+    - pip
 
 about:
-  home: <PLEASE ADD HOME URL>
-  summary: <PLEASE ADD SUMMARY>
-  description: |
-    <PLEASE ADD DESCRIPTION>
-  license: <PLEASE ADD LICENSE>
-  license_family: <PLEASE ADD LICENSE_FAMILY>
-  license_file: <PLEASE_ADD_LICENSE_FILE>
-  dev_url: <PLEASE ADD DEV URL>
-  doc_url: <PLEASE ADD DOC URL>
+  home: https://github.com/neka-nat/streamlit-mermaid
+  summary: A streamlit component, to visualize mermaid
+  dev_url: https://github.com/neka-nat/streamlit-mermaid
+  doc_url: https://github.com/neka-nat/streamlit-mermaid/blob/main/README.md
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+
+  description: A streamlit component, to visualize mermaid
 
 extra:
   recipe-maintainers:
-    - Jrice1317
+    - Cansisti
